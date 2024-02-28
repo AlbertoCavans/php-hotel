@@ -50,29 +50,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My hotels info</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
 
 
 
 <body>
+<div class="container-fluid d-flex align-items-center justify-content-center">
+    <div class="container d-flex align-items-center justify-content-center flex-column my-5">
 
-<?php 
+<h1 class="text-primary my-3">My Hotels Info</h1>
+
+
+
+<div class="card w-75">
+    
+
+    <ul class="list-group">
+  <li class="list-group-item list-group-item-dark"><div class="row w-100">
+        <div class="col-2">Nome</div>
+        <div class="col-3">Descrizione</div>
+        <div class="col-2">Parcheggio</div>
+        <div class="col-2">Voto</div>
+        <div class="col-3">Distanza dal centro</div>
+    </div></li>
+
+    <?php 
  foreach ($hotels as $hotel):
 ?>
-<div>
-<ul>
-<li> <?= $hotel["name"] ?> </li>
-<li> <?= $hotel["description"] ?> </li>
-<li> <?= $hotel["parking"] ?> </li>
-<li> <?= $hotel["vote"] ?> </li>
-<li> <?= $hotel["distance_to_center"] ?> </li>
+
+
+    <li class="list-group-item list-group-item-secondary"><div class="row w-100">
+        <div class="col-2"><?= $hotel["name"] ?></div>
+        <div class="col-3"><?= $hotel["description"] ?></div>
+        <div class="col-2"><?= $hotel["parking"] ? "Sì": "No" ?></div>
+        <div class="col-2"><?= $hotel["vote"] ?></div>
+        <div class="col-3"><?= ($hotel["distance_to_center"] . " Km") ?></div>
+    </div></li>
+
+    <?php 
+ endforeach;
+?>
 </ul>
 </div>
 
-<?php 
- endforeach;
-?>
 
+</div>
+</div>
 </body>
 </html>
