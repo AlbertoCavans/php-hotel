@@ -40,7 +40,14 @@
 
     ];
 
+$select_parking = isset($_GET["parking"]) ? true : false;
 
+
+if ($select_parking) {
+    $hotels = array_filter($hotels, function ($hotel, $index) {
+        return $hotel["parking"] == true;
+    }, ARRAY_FILTER_USE_BOTH);
+};
 
 
 ?>
@@ -60,13 +67,32 @@
 
 <body>
 <div class="container-fluid d-flex align-items-center justify-content-center">
-    <div class="container d-flex align-items-center justify-content-center flex-column my-5">
+    <div class="container d-flex align-items-center justify-content-center flex-column my-5 w-75">
 
 <h1 class="text-primary my-3">My Hotels Info</h1>
 
+<div class="card align-self-start my-3 p-2">
+    <form method="GET">
 
+    <div class="form-check py-2">
+  <input class="form-check-input" type="checkbox" id="parking" name="parking"
+  
+  
+  <?= $select_parking ? "checked" : "" ?>
+  >
 
-<div class="card w-75">
+  
+  <label class="form-check-label" for="parking">
+    Parcheggio disponibile
+  </label>
+</div>
+
+<button class="btn btn-primary">Seleziona</button>
+
+    </form>
+</div>
+
+<div class="card w-100">
     
 
     <ul class="list-group">
@@ -78,9 +104,9 @@
         <div class="col-3">Distanza dal centro</div>
     </div></li>
 
-    <?php 
- foreach ($hotels as $hotel):
-?>
+    <?php  foreach ($hotels as $hotel): ?>
+
+
 
 
     <li class="list-group-item list-group-item-secondary"><div class="row w-100">
