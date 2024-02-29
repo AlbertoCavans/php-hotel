@@ -1,62 +1,10 @@
 <?php
 
-
-/* ARRAY */
-    $hotels = [
-
-        [
-            'name' => 'Hotel Belvedere',
-            'description' => 'Hotel Belvedere Descrizione',
-            'parking' => true,
-            'vote' => 4,
-            'distance_to_center' => 10.4
-        ],
-        [
-            'name' => 'Hotel Futuro',
-            'description' => 'Hotel Futuro Descrizione',
-            'parking' => true,
-            'vote' => 2,
-            'distance_to_center' => 2
-        ],
-        [
-            'name' => 'Hotel Rivamare',
-            'description' => 'Hotel Rivamare Descrizione',
-            'parking' => false,
-            'vote' => 1,
-            'distance_to_center' => 1
-        ],
-        [
-            'name' => 'Hotel Bellavista',
-            'description' => 'Hotel Bellavista Descrizione',
-            'parking' => false,
-            'vote' => 5,
-            'distance_to_center' => 5.5
-        ],
-        [
-            'name' => 'Hotel Milano',
-            'description' => 'Hotel Milano Descrizione',
-            'parking' => true,
-            'vote' => 2,
-            'distance_to_center' => 50
-        ],
-
-    ];
-
-    /* FILTER BY PARKING */
-$select_parking = isset($_GET["parking"]) ? true : false;
+require_once __DIR__ . "/logics/init.php";
 
 
-if ($select_parking) {
-    $hotels = array_filter($hotels, function ($hotel, $index) {
-        return $hotel["parking"] == true;
-    }, ARRAY_FILTER_USE_BOTH);
-};
 
 
-/* FILTER BY VOTE */
-$select_vote = $_GET["vote"] ?? false;
-
-if($select_vote) $hotels = array_filter($hotels, fn($hotel) => $hotel["vote"] >= $select_vote)
 
 ?>
 
