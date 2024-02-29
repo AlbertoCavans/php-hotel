@@ -1,5 +1,7 @@
 <?php
 
+
+/* ARRAY */
     $hotels = [
 
         [
@@ -40,6 +42,7 @@
 
     ];
 
+    /* FILTER BY PARKING */
 $select_parking = isset($_GET["parking"]) ? true : false;
 
 
@@ -50,8 +53,17 @@ if ($select_parking) {
 };
 
 
+/* FILTER BY VOTE */
+$select_vote = $_GET["vote"] ?? false;
+
+if($select_vote) $hotels = array_filter($hotels, fn($hotel) => $hotel["vote"] >= $select_vote)
+
 ?>
 
+
+
+
+<!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,37 +76,49 @@ if ($select_parking) {
 </head>
 
 
-
+<!-- BODY HTML -->
 <body>
+    <!-- GENERAL CONTAINER -->
 <div class="container-fluid d-flex align-items-center justify-content-center">
     <div class="container d-flex align-items-center justify-content-center flex-column my-5 w-75">
 
+    <!-- PAGE TITLE -->
 <h1 class="text-primary my-3">My Hotels Info</h1>
 
-<div class="card align-self-start my-3 p-2">
+<!-- FILTERS CARD -->
+<div class="card align-self-start my-3 p-3 w-25">
     <form method="GET">
 
+    <!-- FILTER BY PARKING -->
     <div class="form-check py-2">
-  <input class="form-check-input" type="checkbox" id="parking" name="parking"
-  
-  
-  <?= $select_parking ? "checked" : "" ?>
-  >
+     <input class="form-check-input" type="checkbox" id="parking" name="parking"
 
-  
-  <label class="form-check-label" for="parking">
-    Parcheggio disponibile
-  </label>
-</div>
+     <?= $select_parking ? "checked" : "" ?>
+     >
 
+     <label class="form-check-label" for="parking">
+      Parcheggio disponibile
+     </label>
+    </div>
+    <hr>
+
+    <!-- FILTER BY VOTE -->
+
+    <div class="mb-3">
+     <label for="vote" class="form-label">Voto</label>
+     <input type="number" class="form-control" id="vote" name="vote" min="1" max="5">
+    </div>
+
+<!-- FORM BUTTON -->
 <button class="btn btn-primary">Seleziona</button>
 
     </form>
 </div>
 
-<div class="card w-100">
-    
+<!-- CARD INFO -->
+<div class="card w-100">  
 
+<!-- HEADER TABLE -->
     <ul class="list-group">
   <li class="list-group-item list-group-item-dark"><div class="row w-100">
         <div class="col-2">Nome</div>
@@ -104,10 +128,9 @@ if ($select_parking) {
         <div class="col-3">Distanza dal centro</div>
     </div></li>
 
+
+    <!-- TABLE BODY -->
     <?php  foreach ($hotels as $hotel): ?>
-
-
-
 
     <li class="list-group-item list-group-item-secondary"><div class="row w-100">
         <div class="col-2"><?= $hotel["name"] ?></div>
