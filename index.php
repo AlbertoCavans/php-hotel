@@ -54,7 +54,7 @@ require_once __DIR__ . "/logics/init.php";
 
     <div class="mb-3">
      <label for="vote" class="form-label">Voto</label>
-     <input type="number" class="form-control" id="vote" name="vote" min="1" max="5">
+     <input type="number" class="form-control" value="<?= $select_vote ?>" id="vote" name="vote" min="1" max="5">
     </div>
 
 <!-- FORM BUTTON -->
